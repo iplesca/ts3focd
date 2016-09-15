@@ -11,8 +11,6 @@ function teleport(serverConnectionHandlerID, menuType, menuItemID, partial, sele
 	local myChannelID, error = ts3.getChannelOfClient(serverConnectionHandlerID, myClientID)
 	
 	if error == ts3errors.ERROR_ok then
-	    ts3.printMessageToCurrentTab(" partial = " .. partial)
-	    
 	    if partial == "true" then
 		clients, error = ts3.getChannelClientList(serverConnectionHandlerID, selectedItemID)
 	    else 
@@ -23,8 +21,7 @@ function teleport(serverConnectionHandlerID, menuType, menuItemID, partial, sele
 		local counter = 0
 		local password = ""
 		
-		if clients ~= nil then
-		    ts3.printMessageToCurrentTab("#clients = " .. #clients .. " partial = " .. partial)
+		if clients ~= nil then		    
 		    for i=1, #clients do
 			if clients[i] ~= myClientID then
 			    local error = ts3.requestClientMove(serverConnectionHandlerID, clients[i], myChannelID, password)
